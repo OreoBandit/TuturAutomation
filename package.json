@@ -1,0 +1,22 @@
+{
+  "name": "automation-tutur",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "qc-start": "npx wdio --spec ./features/%npm_config_testcasepath% --cucumberOpts.tags"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@wdio/appium-service": "^9.0.9",
+    "@wdio/cli": "^9.0.9",
+    "@wdio/cucumber-framework": "^9.0.8",
+    "@wdio/local-runner": "^9.0.9",
+    "@wdio/spec-reporter": "^9.0.8",
+    "appium-uiautomator2-driver": "^3.8.0",
+    "wdio-wait-for": "^3.0.11"
+  }
+}
