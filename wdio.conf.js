@@ -59,6 +59,7 @@ exports.config = {
         'appium:automationName': 'UiAutomator2',
         "appium:appPackage"        : 'com.example.tuturapp',
         "appium:appActivity"       : 'com.example.tuturapp.domain.MainActivity',
+        "appium:noReset"                  :  true  //set to true when debugging
     }],
 
     //
