@@ -59,7 +59,7 @@ exports.config = {
         'appium:automationName': 'UiAutomator2',
         "appium:appPackage"        : 'com.example.tuturapp',
         "appium:appActivity"       : 'com.example.tuturapp.domain.MainActivity',
-        "appium:noReset"                  :  true  //set to true when debugging
+        // "appium:noReset"                  :  true  //set to true when debugging
     }],
 
     //
@@ -118,6 +118,7 @@ exports.config = {
     // Make sure you have the wdio adapter package for the specific framework installed
     // before running any tests.
     framework: 'cucumber',
+    appium: { command: 'appium' },
     
     //
     // The number of times to retry the entire specfile when it fails as a whole
@@ -132,7 +133,7 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
-    reporters: ['spec'],
+    reporters: ['html-nice'],
 
     // If you are using Cucumber you need to specify the location of your step definitions.
     cucumberOpts: {

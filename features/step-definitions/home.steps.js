@@ -2,13 +2,15 @@ import { Given, When, Then } from "@cucumber/cucumber";
 import pages from "../../utils/pages";
 
 Given(/^user tap dictionary$/, async () => {
-    await expect(pages.homepage.dictionaryButton).toBeDisplayed({timeout: 12000}); //tunggu komponen muncul
+    await driver.pause(1000)
+    await expect(pages.homepage.dictionaryButton).toBeExisting(); //tunggu komponen muncul
 	await pages.homepage.dictionaryButton.click()
 });
 
 When(/^user tap translate$/, async () => {
-    await expect(pages.homepage.translateButton).toBeDisplayed({timeout: 12000}); //tunggu komponen muncul
-	await pages.homepage.translateButton.click()
+    await driver.pause(1000)
+    await expect(pages.dictionaryPage.btnTranslate).toBeExisting(); //tunggu komponen muncul
+	await pages.dictionaryPage.btnTranslate.click()
 });
 
 Given(/^User in homepage$/, async () => {
