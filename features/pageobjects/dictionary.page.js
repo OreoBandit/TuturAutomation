@@ -1,4 +1,4 @@
-class Recording{
+class DictionaryPage{
     get btnSayit(){
         return $('//android.view.View[@content-desc="Say it"]')
     }
@@ -12,4 +12,4 @@ class Recording{
     }
 }
 
-export default new Recording();
+export default new DictionaryPage();
