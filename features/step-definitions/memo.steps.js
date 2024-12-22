@@ -5,20 +5,19 @@ import memopageHelper from "../../utils/Helper/memopage.helper";
 
 Given(/^user on homepage$/, async () => {
     await driver.pause(1000)
-    await pages.homepage.memosButton.waitForDisplayed({timeout: 60000})
+    await pages.homepage.btnMemos.waitForDisplayed({timeout: 60000})
 });
 
 When(/^user tap memo button$/, async () => {
     await driver.pause(3000)
-    await pages.homepage.memosButton.waitForDisplayed({timeout: 60000})
-    await pages.homepage.memosButton.click()
+    await pages.homepage.btnMemos.click()
 });
 
 Then(/^user in memo$/, async () => {
     await driver.pause(3000)
     await pages.memoPage.lblTitleHeader.waitForDisplayed({timeout: 60000})
     await expect(pages.memoPage.lblTitleHeader).toHaveText("Recorded Memos")
-    await pages.memoPage.listItemCard[0].isExisting()
+    await pages.memoPage.btnItemCard[0].isExisting()
 });
 
 Given(/^user in the memo page$/, async () => {
@@ -84,8 +83,8 @@ When(/^user rename item "(.*)"$/, async (newName) => {
 });
 
 Then(/^user "(.*)" item will be present$/, async (newName) => {
-	const listLength = await memoPage.listItemCard.length
-    await memopageHelper.verifyItem('rename', listLength, newName)
+    await driver.pause(3000)
+    await expect(pages.memoPage.lblTitleItemCard[0]).toHaveText(newName)
 });
 
 When(/^user choose delete$/, async () => {
@@ -95,26 +94,19 @@ When(/^user choose delete$/, async () => {
 
 When(/^user select items "(.*)"$/, async (items) => {
     await driver.pause(1000)
-    await console.log('cek items', items)
 	await pages.memoPage.btnItemCard[items].click()
 });
 
 Then(/^user deletes item$/, async () => {
 	await driver.pause(1000)
-    const beforeLength = await pages.memoPage.btnItemCard.length
-    console.log('cek current 1', beforeLength)
     await pages.memoPage.btnFloatingDelete.click()
     await pages.memoPage.btnRightPopup.click()
-    await driver.pause(5000)
-    const afterLength = await pages.memoPage.btnItemCard.length;
-    console.log("cek current 2", afterLength)
-    if (afterLength >= beforeLength) {
-        throw new Error(`Expected memo list length to decrease, but it did not. Current: ${afterLength}, Previous: ${beforeLength}`);
-    }
+    await expect(pages.memoPage.lblEmptyMemo).toBeExisting()
 });
 
-Then(/^user memolist is deleted$/, async () => {
-    await driver.pause(3000)
 
+Then(/^user has conversation in memoDetail$/, async () => {
+	await driver.pause(3000)
+    await memopageHelper.verifyChatDetail()
+    await pages.memoPage.btnBack.click()
 });
-

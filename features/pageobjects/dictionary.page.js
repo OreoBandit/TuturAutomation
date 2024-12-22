@@ -1,16 +1,4 @@
 class DictionaryPage{
-    get btnSayit(){
-        return $('//android.view.View[@content-desc="Say it"]')
-    }
-
-    get btnTranslate(){
-        return $('//android.view.View[@content-desc="Translate"]')
-    }
-
-    get btnHistory() {
-        return $('//android.view.View[@content-desc="History"]')
-    }
-
     get lblPlaceholderDictionary(){
         return $('//android.widget.TextView[@content-desc="lblPlaceholderDictionary"]')
     }
@@ -33,6 +21,14 @@ class DictionaryPage{
 
     get btnNextDictionary(){
         return $('//android.view.View[@content-desc="btnNextDictionary"]')
+    }
+     
+    get lblErrorGestureDictionary() {
+        return $('//android.widget.TextView[@content-desc="lblErrorGestureDictionary"]')
+    }
+
+    get lblArrowErrorDictionary(){
+        return $('//android.widget.TextView[@content-desc="lblArrowErrorDictionary"]')
     }
 }
 

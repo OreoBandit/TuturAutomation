@@ -1,34 +1,93 @@
 import { Given, When, Then } from "@cucumber/cucumber";
 import pages from "../../utils/pages";
+import homepageHelper from "../../utils/Helper/homepage.helper";
 
-Given(/^user tap dictionary$/, async () => {
-    await driver.pause(1000)
-    await expect(pages.homepage.dictionaryButton).toBeExisting(); //tunggu komponen muncul
-	await pages.homepage.dictionaryButton.click()
+
+Given(/^user open app$/, async () => {
+	await driver.pause(5000)
+    await pages.homepage.btnCenter.click()
 });
 
-When(/^user tap translate$/, async () => {
-    await driver.pause(1000)
-    await expect(pages.dictionaryPage.btnTranslate).toBeExisting(); //tunggu komponen muncul
-	await pages.dictionaryPage.btnTranslate.click()
-});
 
-Given(/^User in homepage$/, async () => {
+Given(/^user in homepage$/, async () => {
     await driver.pause(5000);
-	await expect(pages.homepage.recordButton).toBeExisting();
-    await expect(pages.homepage.dictionaryButton).toBeExisting();
-    await expect(pages.homepage.memosButton).toBeExisting();
+	await expect(pages.homepage.btnRecord).toBeExisting()
+    await expect(pages.homepage.btnDictionary).toBeExisting()
+    await expect(pages.homepage.btnMemos).toBeExisting()
 });
 
-When(/^User tap dictionary$/, async () => {
+When(/^hand landmark is active$/, async () => {
+	await driver.pause(5000)
+    await expect(pages.homepage.handLandMarkOverlay).toBeExisting()
+});
+
+When(/^user translate SIBI$/, async () => {
+	await driver.pause(5000)
+    await expect(pages.homepage.lblGestureResult).toBeExisting()
+});
+
+When(/^reply button is present$/, async () => {
+	await driver.pause(5000)
+    await expect(pages.homepage.btnReply).toBeExisting()
+});
+
+When(/^user reply with text "(.*)"$/, async (reply) => {
+	await driver.pause(5000)
+    await pages.homepage.btnReply.click()
+    await homepageHelper.checkPopup()
+    await homepageHelper.inputReplyText(reply)
+});
+
+Then(/^user should see reply "(.*)"$/, async (reply) => {
     await driver.pause(5000)
-	await pages.homepage.dictionaryButton.click();
+    await homepageHelper.validateReplyText(reply)
 });
 
-Then(/^User in dictionary page$/, async () => {
-    await driver.pause(5000);
-	await expect(pages.dictionaryPage.btnSayit).toBeExisting();
-    await expect(pages.dictionaryPage.btnTranslate).toBeExisting();
-    await expect(pages.dictionaryPage.btnHistory).toBeExisting()
-    await pages.dictionaryPage.btnTranslate.click();
+When(/^user reply with gesture "(.*)"$/, async (reply) => {
+    await driver.pause(5000)
+    await pages.homepage.btnReply.click()
+    await homepageHelper.inputReplyGesture(reply)
+});
+
+Then(/^user should see gesture results$/, async () => {
+    await driver.pause(5000)
+    await homepageHelper.validateReplyGesture()
+    await driver.pause(3000)
+});
+
+When(/^user click on memo page button$/, async () => {
+    await driver.pause(3000)
+	await pages.homepage.btnMemos.click()
+});
+
+Then(/^user will not have memo$/, async () => {
+    await driver.pause(3000)
+	await expect(pages.memoPage.lblEmptyMemo).toBeExisting()
+    await pages.memoPage.btnBack.click()
+});
+
+When(/^user click record button$/, async () => {
+    await driver.pause(3000)
+    await pages.homepage.btnRecord.click()
+});
+
+When(/^user is in dialogue$/, async () => {
+    await driver.pause(3000)
+    await expect(pages.homepage.lblGestureResult).toBeExisting()
+});
+
+When(/^user save conversation "(.*)"$/, async (memoTitle) => {
+    await driver.pause(3000)
+    await pages.homepage.btnStopRecording.click()
+    await driver.pause(2000)
+    await pages.homepage.txtInputPopup.click()
+    await driver.keys(memoTitle)
+    await pages.homepage.btnRightPopup.click()
+});
+
+Then(/^memo "(.*)" will be present$/, async (memoTitle) => {
+	await driver.pause(3000)
+    await expect(pages.memoPage.btnItemCard[0]).toBeExisting
+    await expect(pages.memoPage.lblTitleItemCard[0]).toHaveText(memoTitle)
+    await pages.memoPage.btnBack.click()
 });

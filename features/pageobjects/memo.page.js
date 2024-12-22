@@ -8,10 +8,6 @@ class MemoPage {
         return $('//android.view.View[@content-desc="btnBack"]');
     }
 
-    get btnTextHeader() {
-        return $('id=btnTextHeader');
-    }
-
     get txtInputSearch() {
         return $('//android.view.View[@content-desc="txtInputSearch"]');
     }
@@ -28,12 +24,24 @@ class MemoPage {
         return $$('//android.widget.TextView[@content-desc="lblTitleItemCard"]');
     }
 
+    get lblChatLeft(){
+        return $$('//android.widget.TextView[@content-desc="lblChatLeft"]')
+    }
+
+    get lblChatRight(){
+        return $$('//android.widget.TextView[@content-desc="lblChatRight"]')
+    }
+
     get lblDateItemCard() {
-        return $('id=lblDateItemCard');
+        return $$('//android.widget.TextView[@content-desc="lblDateItemCard"]');
     }
 
     get lblTimeItemCard() {
-        return $('id=lblTimeItemCard');
+        return $$('//android.widget.TextView[@content-desc="lblTimeItemCard"]');
+    }
+
+    get lblEmptyMemo(){
+        return $('//android.widget.TextView[@content-desc="lblEmptyMemo"]')
     }
 
     get txtInputPopup(){
@@ -53,15 +61,35 @@ class MemoPage {
     }
 
     get lblTitlePopup() {
-        return $('id=lblTitlePopup')
+        return $('//android.widget.TextView[@content-desc="lblTitlePopup"]')
+    }
+
+    get lblMsgPopup() {
+        return $('//android.widget.TextView[@content-desc="lblMsgPopup"]')
+    }
+
+    get lblTitleInfoMemoDetail(){
+        return $('//android.widget.TextView[@content-desc="lblTitleInfoMemoDetail"]')
+    }
+
+    get btnContinue(){
+        return $('//android.view.View[@content-desc="btnContinue"]')
+    }
+
+    get btnIconHeader(){
+        return $('//android.view.View[@content-desc="btnIconHeader"]')
     }
     
     get btnIconItemCard() {
         return $$('//android.view.View[@content-desc="btnCheckBoxItemCard"]')
     }
 
-    get lblTitleItemCard() {
-        return $$('//android.widget.TextView[@content-desc="lblTitleItemCard"]')
+    get bubbleChatLeft() {
+        return $$('(//android.view.View[@content-desc="bubbleChatLeft"])')
+    }
+
+    get bubbleChatRight() {
+        return $$('(//android.view.View[@content-desc="bubbleChatRight"])')
     }
 
     get btnFloatingDelete(){

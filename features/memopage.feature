@@ -1,4 +1,4 @@
-Feature: testing memopage
+Feature: Memo page
 
   @memo @memofilter
   Scenario: User go to memopage
@@ -14,9 +14,8 @@ Feature: testing memopage
     Then user will see memo with title "<memo-name>"
 
     Examples:
-      | memo-name              |
-      | Interview with Hanni   |
-      | Interview with Hanni 2 |
+      | memo-name  |
+      | test rep 1 |
 
   @memo @memoRename
   Scenario: User rename item in memopage
@@ -31,6 +30,13 @@ Feature: testing memopage
       | new-name         |
       | renamed new item |
 
+  @memo @memoDetail
+  Scenario: User go to memo detail
+    Given user in the memo page
+    When user click on the first item
+    Then user is on memo detail
+    And user has conversation in memoDetail
+
   @memo @memoDelete
   Scenario: User delete item in memopage
     Given user in the memo page
@@ -38,16 +44,8 @@ Feature: testing memopage
     When user long press item
     And user choose delete
     And user select items "<items>"
-    # Then user deletes item
+    Then user deletes item
 
     Examples:
       | items |
       |     0 |
-      |     1 |
-      |     2 |
-
-  @memo
-  Scenario: User go to memo detail
-    Given user in the memo page
-    When user click on the first item
-    Then user is on memo detail
