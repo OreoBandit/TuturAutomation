@@ -11,8 +11,8 @@ class Homepage {
         return $('//android.view.View[@content-desc="btnMemos"]');
     }
 
-    get btnStopRecording(){
-        return $('//android.view.View[@content-desc="btnStopRecording"]')
+    get btnFinishRecording(){
+        return $('//android.view.View[@content-desc="btnFinishRecording"]')
     }
 
     get btnTexttospeech() {

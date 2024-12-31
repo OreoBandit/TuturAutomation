@@ -78,7 +78,7 @@ When(/^user is in dialogue$/, async () => {
 
 When(/^user save conversation "(.*)"$/, async (memoTitle) => {
     await driver.pause(3000)
-    await pages.homepage.btnStopRecording.click()
+    await pages.homepage.btnFinishRecording.click()
     await driver.pause(2000)
     await pages.homepage.txtInputPopup.click()
     await driver.keys(memoTitle)
@@ -87,6 +87,7 @@ When(/^user save conversation "(.*)"$/, async (memoTitle) => {
 
 Then(/^memo "(.*)" will be present$/, async (memoTitle) => {
 	await driver.pause(3000)
+    await pages.homepage.btnMemos.click()
     await expect(pages.memoPage.btnItemCard[0]).toBeExisting
     await expect(pages.memoPage.lblTitleItemCard[0]).toHaveText(memoTitle)
     await pages.memoPage.btnBack.click()
