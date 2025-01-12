@@ -74,7 +74,6 @@ When(/^user choose rename$/, async () => {
 When(/^user rename item "(.*)"$/, async (newName) => {
     const currentTitle = await memoPage.txtInputPopup.getText()
     const length = await currentTitle.length
-    console.log('cek items', currentTitle, length)
     await driver.pause(1000)
     await pages.memoPage.txtInputPopup.click()
     await memopageHelper.clearText(length)
@@ -109,4 +108,36 @@ Then(/^user has conversation in memoDetail$/, async () => {
 	await driver.pause(3000)
     await memopageHelper.verifyChatDetail()
     await pages.memoPage.btnBack.click()
+});
+
+// memo negative case
+When(/^user not select items$/, async () => {
+    await pages.memoPage.btnFloatingDelete.click()
+    await pages.memoPage.btnRightPopup.click()
+});
+
+Then(/^memo should not be deleted$/, async () => {
+    const isExisting = await pages.memoPage.lblEmptyMemo.isExisting()
+    if (isExisting) {
+        throw new Error("Item is deleted, but it shouldn't have been because nothing was selected.");
+    }
+});
+
+When(/^user input empty rename in item "(.*)"$/, async (targetMemo) => {
+    await driver.pause(1000)
+    await pages.memoPage.txtInputPopup.click()
+    const length = targetMemo.length
+    await memopageHelper.clearText(length)
+    await expect(pages.memoPage.lblPopupError).toBeExisting()
+});
+
+
+Then(/^item should not be renamed$/, async () => {
+    await driver.pause(1000)
+	await pages.memoPage.btnRightPopup.click()
+    const isExisting = await pages.memoPage.lblPopupError.isExisting()
+    if (!isExisting) {
+        throw new Error("Item is renamed, but it shouldn't have been because title was empty.")
+    }
+    await pages.memoPage.btnLeftPopup.click()
 });

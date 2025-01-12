@@ -16,6 +16,26 @@ Given(/^user in homepage$/, async () => {
     await expect(pages.homepage.btnMemos).toBeExisting()
 });
 
+Then(/^header button should exist$/, async () => {
+    await driver.pause(3000)
+	await expect(pages.homepage.btnCameraFront).toBeExisting()
+    await expect(pages.homepage.btnTTSDisabled).toBeExisting()
+	await expect(pages.homepage.btnFlashDisabled).toBeExisting()
+})
+
+
+Then(/^header button is functioning while front camera active$/, async () => {
+	await driver.pause(3000)
+    await homepageHelper.checkComponentsFrontFacing()
+});
+
+
+Then(/^header button is functioning while back camera active$/, async () => {
+	await driver.pause(3000)
+    await homepageHelper.checkComponentsBackFacing()
+});
+
+
 When(/^hand landmark is active$/, async () => {
 	await driver.pause(5000)
     await expect(pages.homepage.handLandMarkOverlay).toBeExisting()
@@ -24,6 +44,15 @@ When(/^hand landmark is active$/, async () => {
 When(/^user translate SIBI$/, async () => {
 	await driver.pause(5000)
     await expect(pages.homepage.lblGestureResult).toBeExisting()
+});
+
+When(/^user translate SIBI with TTS$/, async () => {
+	await driver.pause(5000)
+    await pages.homepage.btnTTSDisabled.click()
+    await expect(pages.homepage.btnTTSEnabled).toBeExisting()
+    await expect(pages.homepage.lblGestureResult).toBeExisting()
+    await pages.homepage.btnTTSEnabled.click()
+    await driver.pause(3000)
 });
 
 When(/^reply button is present$/, async () => {
@@ -92,3 +121,50 @@ Then(/^memo "(.*)" will be present$/, async (memoTitle) => {
     await expect(pages.memoPage.lblTitleItemCard[0]).toHaveText(memoTitle)
     await pages.memoPage.btnBack.click()
 });
+
+// negative
+Then(/^gesture is not recognized$/, async () => {
+    await driver.pause(3000)
+    const isExisting = await pages.homepage.lblGestureResult.isExisting();
+    if (isExisting) {
+        throw new Error("Gesture was recognized, but it shouldn't have been.");
+    }
+});
+
+Then(/^user reply empty text$/, async () => {
+    await driver.pause(3000)
+    await pages.homepage.btnReply.click()
+    await pages.homepage.btnRightPopup.click()
+    const isExisting = await pages.homepage.lblTitlePopup.isExisting()
+    if (isExisting) {
+        throw new Error("Popup reply text was present, but it shouldn't have been.");
+    }
+});
+
+Then(/^user reply empty gesture$/, async () => {
+    await driver.pause(3000)
+    await pages.homepage.btnReply.click()
+    await pages.homepage.btnLeftPopup.click()
+    const isExisting = await pages.dictionaryPage.lblDictionaryResult.isExisting()
+    if (isExisting) {
+        throw new Error("User went to dictionary, but it shouldn't have been.");
+    }
+});
+
+
+When(/^user finish recording$/, async () => {
+    await driver.pause(3000)
+    await pages.homepage.btnFinishRecording.click()
+});
+
+
+Then(/^record should not be saved$/, async () => {
+    await driver.pause(2000)
+    const isExisting = await pages.homepage.lblTitlePopup.isExisting()
+    if (!isExisting) {
+        throw new Error("Recording is saved, but it shouldn't have been because title was empty.");
+    }
+    await pages.homepage.btnLeftPopup.click()
+});
+
+

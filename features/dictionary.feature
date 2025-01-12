@@ -16,7 +16,17 @@ Feature: Dictionary page
       | keyword |
       | Saya    |
 
-  @dictionary @errorDictionary1
+  @dictionary @searchDictionaryPaste
+  Scenario: User search dictionary paste
+    Given user in dictionary page
+    When user paste
+    Then user will see "<keyword>" displayed in results
+
+    Examples:
+      | keyword |
+      | Saya    |
+
+  @dictionaryNegative @errorDictionary
   Scenario: User search keyword not found
     Given user in dictionary page
     When user search "<keyword>"

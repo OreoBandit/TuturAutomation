@@ -14,8 +14,8 @@ Feature: Memo page
     Then user will see memo with title "<memo-name>"
 
     Examples:
-      | memo-name  |
-      | test rep 1 |
+      | memo-name      |
+      | test record  1 |
 
   @memo @memoRename
   Scenario: User rename item in memopage
@@ -49,3 +49,25 @@ Feature: Memo page
     Examples:
       | items |
       |     0 |
+
+  @memoNegative @memoEmptyDelete
+  Scenario: memo empty delete
+    Given user in the memo page
+    And user has memo
+    When user long press item
+    And user choose delete
+    And user not select items
+    Then memo should not be deleted
+
+  @memoNegative @memoEmptyRename
+  Scenario: memo empty rename
+    Given user in the memo page
+    And user has memo
+    When user long press item
+    And user choose rename
+    And user input empty rename in item "<memo-name>"
+    Then item should not be renamed
+
+    Examples:
+      | memo-name      |
+      | test record  1 |

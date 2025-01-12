@@ -26,6 +26,12 @@ When(/^user search "(.*)"$/, async (keyword) => {
     await pages.dictionaryPage.btnTutur.click()
 });
 
+When(/^user paste$/, async () => {
+    await driver.pause(3000)
+    await pages.dictionaryPage.btnPaste.click()
+    await pages.dictionaryPage.btnTutur.click()
+});
+
 Then(/^user will see "(.*)" displayed in results$/, async (keyword) => {
     await pages.dictionaryPage.lblDictionaryResult.waitForDisplayed({timeout: 10000})
     await driver.pause(2000)
@@ -35,7 +41,7 @@ Then(/^user will see "(.*)" displayed in results$/, async (keyword) => {
 
 Then(/^app will display unable to show error "(.*)"$/, async (keyword) => {
     await driver.pause(5000)
-    const expectedMsg = `Unable to load gesture for \"${keyword}\".`
+    const expectedMsg = `Gestur untuk \"${keyword}\" tidak ditemukan.`
     await pages.dictionaryPage.lblErrorGestureDictionary.waitForDisplayed({timeout: 10000})
     await expect(pages.dictionaryPage.lblErrorGestureDictionary).toHaveText(expectedMsg)
     await pages.dictionaryPage.btnNextDictionary.click()

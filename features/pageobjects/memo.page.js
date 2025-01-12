@@ -57,7 +57,7 @@ class MemoPage {
     }
 
     get lblPopupError(){
-        return $('id=lblPopupError')
+        return $('//android.widget.TextView[@content-desc="lblPopupError"]')
     }
 
     get lblTitlePopup() {

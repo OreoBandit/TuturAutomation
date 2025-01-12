@@ -15,20 +15,32 @@ class Homepage {
         return $('//android.view.View[@content-desc="btnFinishRecording"]')
     }
 
-    get btnTexttospeech() {
-        return $('//android.widget.ImageView[@content-desc="btnTexttospeech"]')
+    get btnTTSEnabled() {
+        return $('//android.widget.ImageView[@content-desc="btnTTSEnabled"]')
     }
 
-    get btnCamera() {
-        return $('//android.widget.ImageView[@content-desc="btnCamera"]')
+    get btnTTSDisabled(){
+        return $('//android.widget.ImageView[@content-desc="btnTTSDisabled"]')
     }
 
-    get btnFlash() {
-        return $('//android.widget.ImageView[@content-desc="btnFlash"]')
+    get btnCameraFront() {
+        return $('//android.widget.ImageView[@content-desc="btnCameraFront"]')
     }
 
-    get handLandMarkOverlay() {
-        return $('//android.view.View[@content-desc="handLandMarkOverlay"]')
+    get btnCameraBack() {
+        return $('//android.widget.ImageView[@content-desc="btnCameraBack"]')
+    }
+
+    get btnFlashDisabled(){
+        return $('//android.widget.ImageView[@content-desc="btnFlashDisabled"]')
+    }
+
+    get btnFlashEnabled(){
+        return $('//android.widget.ImageView[@content-desc="btnFlashEnabled"]')
+    }
+
+    get handLandMarkOverlay() { // khusus ini pake default xpath karena overlay
+        return $('//androidx.compose.ui.viewinterop.ViewFactoryHolder/android.widget.FrameLayout/android.view.View')
     }
 
     get lblGestureResult(){
