@@ -58,11 +58,10 @@ exports.config = {
         'appium:platformVersion': '14.0',
         'appium:automationName': 'UiAutomator2',
         "appium:appPackage"        : 'com.example.tuturapp',
-        "appium:appActivity"       : 'com.example.tuturapp.domain.MainActivity',
-        // "appium:noReset"                  :  true  //set to true when debugging
+        "appium:appActivity"       : 'com.example.tuturapp.domain.MainView',
+        "appium:noReset"                  :  true  //set to true when debugging
     }],
 
-    //
     // ===================
     // Test Configurations
     // ===================
@@ -139,7 +138,7 @@ exports.config = {
     cucumberOpts: {
         // <string[]> (file/dir) require files before executing features
         require: [
-            './features/step-definitions/home.steps.js'
+            './features/step-definitions/dictionary.steps.js'
         ],
         // <boolean> show full backtrace for errors
         backtrace: false,

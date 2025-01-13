@@ -1,15 +1,35 @@
-class Recording{
-    get btnSayit(){
-        return $('//android.view.View[@content-desc="Say it"]')
+class DictionaryPage{
+    get lblPlaceholderDictionary(){
+        return $('//android.widget.TextView[@content-desc="lblPlaceholderDictionary"]')
     }
 
-    get btnTranslate(){
-        return $('//android.view.View[@content-desc="Translate"]')
+    get btnPaste(){
+        return $('//android.view.View[@content-desc="btnPaste"]')
     }
 
-    get btnHistory() {
-        return $('//android.view.View[@content-desc="History"]')
+    get txtInputDictionary(){
+        return $('//android.view.View[@content-desc="txtInputDictionary"]')
+    }
+
+    get btnTutur(){
+        return $('//android.view.View[@content-desc="btnTutur"]')
+    }
+
+    get lblDictionaryResult(){
+        return $('//android.widget.TextView[@content-desc="lblDictionaryResult"]')
+    }
+
+    get btnNextDictionary(){
+        return $('//android.view.View[@content-desc="btnNextDictionary"]')
+    }
+     
+    get lblErrorGestureDictionary() {
+        return $('//android.widget.TextView[@content-desc="lblErrorGestureDictionary"]')
+    }
+
+    get lblArrowErrorDictionary(){
+        return $('//android.widget.TextView[@content-desc="lblArrowErrorDictionary"]')
     }
 }
 
-export default new Recording();
+export default new DictionaryPage();
