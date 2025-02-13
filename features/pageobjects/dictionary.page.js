@@ -1,35 +1,45 @@
-class DictionaryPage{
-    get lblPlaceholderDictionary(){
-        return $('//android.widget.TextView[@content-desc="lblPlaceholderDictionary"]')
-    }
+class DictionaryPage {
+  get lblPlaceholderDictionary() {
+    return $(
+      '//android.widget.TextView[@content-desc="lblPlaceholderDictionary"]'
+    );
+  }
 
-    get btnPaste(){
-        return $('//android.view.View[@content-desc="btnPaste"]')
-    }
+  get btnLearning() {
+    return $('//android.view.View[@content-desc="btnLearning"]');
+  }
 
-    get txtInputDictionary(){
-        return $('//android.view.View[@content-desc="txtInputDictionary"]')
-    }
+  get btnPaste() {
+    return $('//android.view.View[@content-desc="btnPaste"]');
+  }
 
-    get btnTutur(){
-        return $('//android.view.View[@content-desc="btnTutur"]')
-    }
+  get txtInputDictionary() {
+    return $('//android.view.View[@content-desc="txtInputDictionary"]');
+  }
 
-    get lblDictionaryResult(){
-        return $('//android.widget.TextView[@content-desc="lblDictionaryResult"]')
-    }
+  get btnTutur() {
+    return $('//android.view.View[@content-desc="btnTutur"]');
+  }
 
-    get btnNextDictionary(){
-        return $('//android.view.View[@content-desc="btnNextDictionary"]')
-    }
-     
-    get lblErrorGestureDictionary() {
-        return $('//android.widget.TextView[@content-desc="lblErrorGestureDictionary"]')
-    }
+  get lblDictionaryResult() {
+    return $('//android.widget.TextView[@content-desc="lblDictionaryResult"]');
+  }
 
-    get lblArrowErrorDictionary(){
-        return $('//android.widget.TextView[@content-desc="lblArrowErrorDictionary"]')
-    }
+  get btnNextDictionary() {
+    return $('//android.view.View[@content-desc="btnNextDictionary"]');
+  }
+
+  get lblErrorGestureDictionary() {
+    return $(
+      '//android.widget.TextView[@content-desc="lblErrorGestureDictionary"]'
+    );
+  }
+
+  get lblArrowErrorDictionary() {
+    return $(
+      '//android.widget.TextView[@content-desc="lblArrowErrorDictionary"]'
+    );
+  }
 }
 
 export default new DictionaryPage();

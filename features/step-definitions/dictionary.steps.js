@@ -1,6 +1,7 @@
 import { Given, When, Then } from "@wdio/cucumber-framework";
 import pages from "../../utils/pages";
 
+
 Given(/^user in homepage$/, async () => {
     await driver.pause(5000);
     await expect(pages.homepage.btnRecord).toBeExisting()
